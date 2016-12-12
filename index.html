@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8"/>
+        <title>Document</title>
+    </head>
+    <body></body>
+    <script src="http://cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
+    <script>
+	require(['./eventEmitter.js'],function(Emit){
+	    var emiter = new Emit();
+	    emiter.on("newclick",function(e){
+		console.log('click1',e);
+	    });
+	    emiter.on("newclick",function(e){
+		console.log('click2',e);
+	    });
+
+	    emiter.one("hello",function(){
+		console.log("i only excute once");
+	    });
+
+	    emiter.trigger("newclick");
+	    emiter.trigger("newclick",{name:"alan"});
+	    emiter.trigger("hello");
+	    emiter.trigger("hello");
+	})
+
+    </script>
+</html>
