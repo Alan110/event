@@ -20,7 +20,13 @@ define(function () {
         return -1;
     }
 
-    proto.addEventListener = proto.on = function (evt, listener) {
+    /**
+     * registe custom event into event center
+     * @param {} evt event type
+     * @param {} listener callback
+     * @returns {} this reference
+     */
+    proto.on = function (evt, listener) {
         var listeners = this._getEventListenersAsObject(evt);
         var isMulti = typeof listener === 'object';
 
@@ -43,7 +49,7 @@ define(function () {
         });
     };
 
-    proto.removeEventListener = proto.off = function (evt, listener) {
+    proto.off = function (evt, listener) {
         var listeners = this._getEventListenersAsObject(evt);
 
         for (var key in listeners) {
@@ -59,6 +65,12 @@ define(function () {
         return this;
     };
 
+    /**
+     * fire event with parmas
+     * @param {} evt event type
+     * @param {} args parmas
+     * @returns {} this reference
+     */
     proto.trigger = function (evt, args) {
         var listenersMap = this._getEventListenersAsObject(evt);
         var response;
@@ -104,4 +116,5 @@ define(function () {
     };
 
     return EventEmitter;
+
 });
