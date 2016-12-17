@@ -49,6 +49,12 @@ define(function () {
         });
     };
 
+    /**
+     * delete event bind
+     * @param {} evt
+     * @param {} listener
+     * @returns {} 
+     */
     proto.off = function (evt, listener) {
         var listeners = this._getEventListenersAsObject(evt);
 
@@ -86,7 +92,7 @@ define(function () {
                         this.off(evt, listener.listener);
                     }
 
-                    response = listener.listener.apply(this, args || []);
+                    response = listener.listener.call(this, args || []);
                 }
             }
         }
